@@ -1,0 +1,34 @@
+@model User
+
+
+<form asp-action="Registering" asp-controller="Admin" class="mx-auto w-50 mt-5 ">
+    <h3 class="mt-5 mb-4">Register</h3>
+    <div class="form-group">
+        <label asp-for="Name">Username</label>
+        <span asp-validation-for="Name" class="text-danger font-weight-bold"></span>
+        <input asp-for="Name" class="form-control" >
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RoleId"></label>
+        <span asp-validation-for="RoleId" class="text-danger font-weight-bold"></span>
+        <select asp-for="RoleId" class="form-control" >
+            <option value="1">Admin</option>
+            <option disabled value="2">Customer</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <span asp-validation-for="Password" class="text-danger font-weight-bold"></span>
+        <input asp-for="Password" class="form-control" >
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConfirmPswd"></label>
+        <span asp-validation-for="ConfirmPswd" class="text-danger font-weight-bold"></span>
+        <input asp-for="ConfirmPswd" class="form-control" >
+    </div>
+
+    <button type="submit" class="btn btn-outline-warning mt-3">Register</button>
+</form>

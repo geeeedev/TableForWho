@@ -1,0 +1,77 @@
+ @model List<User>
+@{
+    int currURole = 0;
+    if (Context.Session.GetInt32("currURole") != null)
+    {
+        currURole = (int)Context.Session.GetInt32("currURole");
+    }
+}
+
+<div class="col mx-auto w-60">
+    <table class="table table-striped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Wait#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Table For</th>
+                @if(currURole==1)
+                {
+                <th scope="col">Phone</th>
+                <th scope="col">RoleId</th>
+                <th scope="col"></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (User u in Model)
+            {
+            <tr>
+                <th scope="row">@u.UserId</th>
+                <td>@u.Name</td>
+                <td>@u.TableFor</td>
+                @if(currURole==1)
+                    {
+                    <td>@u.PhoneNumber</td>
+                    <td>@u.RoleId</td>
+                    <td>
+                        <form asp-controller="Home" asp-action="Seated" asp-route-userId="@u.UserId" method="POST" class="d-inline ">
+                            @* <button @(u.isSeated ? "disabled" : "") type="submit" class="btn btn-link ">&#127836;</button> *@ @*works but graphics unclear*@
+                            @if(u.isSeated==false && u.hasLeft==false)
+                            {
+                                <button type="submit" class="btn btn-link ">&#127836;</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-link "> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button> 
+                            }
+                        </form>
+                        <form asp-controller="Home" asp-action="Left" asp-route-userId="@u.UserId" method="POST" class="d-inline ">
+                            @* <button @(u.hasLeft ? "disabled" : "") type="submit" class="btn btn-link ">&#10060;</button> *@ @*works but graphics unclear*@
+                            @if(u.hasLeft==false)
+                            {
+                                <button type="submit" class="btn btn-link ">&#10060;</button>
+                            }
+                        </form>
+                    </td>
+                    }
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if(currURole==1)
+    {
+        <div class="d-flex justify-content-between mt-5">
+            <div>
+                <small class="font-italic d-block ">RoleId 1 = Admin</small>
+                <small class="font-italic d-block ">RoleId 2 = Customer</small>
+            </div>
+            <div>
+                <form asp-controller="Home" asp-action="ClearAll" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-outline-warning ">Clear All</button>
+                </form>
+                <a asp-controller="Home" asp-action="ShowAll" class="btn btn-outline-warning">Show All</a> 
+            </div>
+        </div>
+    }
+    
+</div>

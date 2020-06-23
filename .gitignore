@@ -1,0 +1,23 @@
+# .NET Core
+.DS_Store
+.vscode/
+Migrations/
+bin/
+obj/
+#*.png
+*.sql
+appsettings.json
+--ContinuousImprovementNotes.txt
+ShowWaitList_FinalVersionShouldUseShowAll.cshtml
+
+# Python / Django
+__pycache__/
+.vscode
+venv/
+veDjango/
+db.sqlite3
+requirements.txt
+
+# VS Code
+.vscode
+.vscode/

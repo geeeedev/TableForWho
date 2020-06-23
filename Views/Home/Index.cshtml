@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    
+}
+@model User
+
+<div class="container">
+    <div class="col mx-auto w-50 text-center mt-5 ">
+        <h3 class="mb-3">Welcome!</h3>
+        <button class="btn btn-warning mt-1" type="button"  data-toggle="modal" data-target="#TableForForm">How Many For Your Party?</button> 
+        <a      class="btn btn-warning mt-1" asp-controller="Home" asp-action="custCheck">Let's Check Your Spot</a>   
+        @*  debug
+        <span asp-validation-for="Name" class="text-attention"></span>
+        <span asp-validation-for="TableFor" class="text-attention"></span>
+        <span asp-validation-for="PhoneNumber" class="text-attention"></span>
+        <span asp-validation-for="RoleId" class="text-attention"></span>
+        <span asp-validation-for="Password" class="text-attention"></span>
+        <span asp-validation-for="ConfirmPswd" class="text-attention"></span> *@
+    </div> 
+
+
+    @* <div class="modal fade bd-example-modal-sm" id="TableForForm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"> *@
+    <div class="modal fade bd-example-modal-sm" id="TableForForm"  tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            @* modal-dialog-centered *@
+            <div class="modal-content">
+            
+                <form asp-controller="Home" asp-action="Create" method="POST">
+                    <div class="col mx-auto w-50 mt-3">
+                        <div class="form-group" >
+                            <label asp-for="Name"></label>
+                            <span asp-validation-for="Name" class="text-attention"></span>
+                            <input asp-for="Name" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TableFor"></label>
+                            <span asp-validation-for="TableFor" class="text-attention"></span>
+                            <select asp-for="TableFor" class="form-control" >
+                            @for (int i=1; i<21; i++) //largest table at restaurant can accommodate 20 guests
+                            {
+                                <option value="@i">@i</option>
+                            }
+                            </select>
+                            @*  <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option> *@
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber">Phone Number</label>
+                            <span asp-validation-for="PhoneNumber" class="text-attention"></span>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="###-###-####">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-warning mt-3">Submit</button>
+                            <button type="button" class="btn btn-outline-warning mt-3" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

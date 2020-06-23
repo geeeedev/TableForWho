@@ -1,0 +1,24 @@
+@model User
+
+<div class="col mx-auto w-50">
+    <table class="table table-stripped table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Wait#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Table For</th>
+                <th scope="col">Phone (Hide)</th>
+                <th scope="col">RoleId (Hide)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">@Model.UserId</th>
+                <td>@Model.Name</td>
+                <td>@Model.TableFor</td>
+                <td>@Model.PhoneNumber</td>
+                <td>@Model.RoleId</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
