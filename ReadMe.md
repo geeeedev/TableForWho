@@ -1,6 +1,5 @@
 ## This is a Wait List app - **Table For Who**
 
----
 
 Technology used:
 
